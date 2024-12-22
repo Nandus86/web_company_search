@@ -13,17 +13,11 @@ class CompanyInfo(models.Model):
     phone = fields.Char(string='Telefone')
     website = fields.Char(string='Website')
     search_request_id = fields.Many2one('web_company_search.search_request', string='Requisição de Pesquisa', ondelete='cascade')
-
-    @api.model
-    def _get_webhook_url(self):
-        # Configuração dinâmica da URL do webhook a partir de uma configuração do sistema ou campo do modelo,
-        # por enquanto definindo uma url padrão.
-        return "https://brain.nandus.com.br/webhook/module-odoo-wcs"
-
+    webhook_url = fields.Char(string='URL Webhook Envio')
+    
     def send_webhook(self):
         """Envia as informações da empresa para o webhook."""
-        webhook_url = self._get_webhook_url()
-        
+        webhook_url = self.webhook_url
         if not webhook_url:
             return {
                 'warning': {
@@ -44,13 +38,14 @@ class CompanyInfo(models.Model):
         try:
             response = requests.post(webhook_url, data=json.dumps(data), headers=headers)
             response.raise_for_status()  # Lança exceção para status de erro HTTP
-            # Log da resposta, se necessário
+             # Log da resposta, se necessário
             self.env['ir.logging'].create({
                 'name': 'Webhook Response',
                 'type': 'server',
                 'level': 'info',
                 'message': f'Webhook enviado com sucesso para {webhook_url}. Resposta: {response.text}'
             })
+
         except requests.exceptions.RequestException as e:
              self.env['ir.logging'].create({
                 'name': 'Webhook Error',
@@ -58,4 +53,5 @@ class CompanyInfo(models.Model):
                 'level': 'error',
                 'message': f'Erro ao enviar o webhook para {webhook_url}: {e}'
             })
+
         return True

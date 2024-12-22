@@ -1,7 +1,6 @@
 <odoo>
     <data>
-
-       <!-- Action para abrir o formulário de pesquisa -->
+         <!-- Action para abrir o formulário de pesquisa -->
         <record id="action_company_search_form" model="ir.actions.act_window">
             <field name="name">Pesquisar Empresas</field>
             <field name="res_model">web_company_search.search_request</field>
@@ -9,7 +8,7 @@
             <field name="target">new</field>
         </record>
 
-         <record id="view_company_search_form" model="ir.ui.view">
+        <record id="view_company_search_form" model="ir.ui.view">
             <field name="name">web_company_search.search_request.form</field>
             <field name="model">web_company_search.search_request</field>
             <field name="arch" type="xml">
@@ -21,12 +20,16 @@
                         <div class="oe_button_box">
                             <button name="search_companies_action" type="object" string="Pesquisar Empresas" class="oe_highlight"/>
                         </div>
+                         <group>
+                           <field name="status"/>
+                         </group>
+                        
                     </sheet>
                 </form>
             </field>
         </record>
-       
-          <!-- Action para abrir a lista de empresas -->
+
+        <!-- Action para abrir a lista de empresas -->
         <record id="action_company_info_list" model="ir.actions.act_window">
             <field name="name">Empresas Pesquisadas</field>
             <field name="res_model">web_company_search.company_info</field>
@@ -37,7 +40,8 @@
                 </p>
             </field>
         </record>
-         <!-- View para listagem das empresas -->
+
+        <!-- View para listagem das empresas -->
         <record id="view_company_info_tree" model="ir.ui.view">
             <field name="name">web_company_search.company_info.tree</field>
             <field name="model">web_company_search.company_info</field>
@@ -48,6 +52,7 @@
                     <field name="address"/>
                     <field name="phone"/>
                     <field name="website"/>
+                     <field name="webhook_url"/>
                 </tree>
             </field>
         </record>
@@ -65,6 +70,7 @@
                             <field name="address"/>
                             <field name="phone"/>
                             <field name="website"/>
+                            <field name="webhook_url"/>
                          </group>
                        <div class="oe_button_box">
                             <button name="send_webhook" type="object" string="Enviar para Webhook" class="oe_highlight"/>
@@ -73,10 +79,11 @@
                 </form>
             </field>
         </record>
-         <!-- Menu principal -->
+
+        <!-- Menu principal -->
         <menuitem id="menu_web_company_search_root" name="Pesquisar Empresas Web" sequence="10"/>
 
-        <!-- Menu para pesquisa -->
+         <!-- Menu para pesquisa -->
          <menuitem id="menu_company_search"
                   name="Pesquisar"
                   parent="menu_web_company_search_root"
@@ -89,6 +96,6 @@
                   parent="menu_web_company_search_root"
                   action="action_company_info_list"
                   sequence="20"/>
+
     </data>
-    
 </odoo>

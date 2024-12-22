@@ -10,6 +10,7 @@ class SearchRequest(models.Model):
     term = fields.Char(string='Termo de Pesquisa', required=True)
     search_date = fields.Datetime(string='Data da Pesquisa', default=fields.Datetime.now)
     results = fields.One2many('web_company_search.company_info', 'search_request_id', string='Resultados')
+    status = fields.Selection([('pending','Pendente'), ('done','Concluido')], string="Status", default="pending")
 
     def search_companies_action(self):
           """Envia a requisição para o endpoint de pesquisa."""

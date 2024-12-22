@@ -5,10 +5,9 @@ import requests
 import json
 
 class WebCompanySearch(http.Controller):
-    
     @http.route('/web/api/search_companies', auth='public', methods=['POST'], csrf=False)
     def search_companies(self, **kw):
-        """
+         """
         Endpoint para receber os termos de pesquisa e iniciar a busca.
         """
         term = kw.get('term')
@@ -18,7 +17,7 @@ class WebCompanySearch(http.Controller):
                 "message": "Termo de pesquisa não fornecido."
             }
         
-        search_request = request.env['web_company_search.search_request'].create({'term': term})
+        search_request = request.env['web_company_search.search_request'].create({'term': term, 'status':'pending'})
 
         webhook_url = self._get_search_webhook_url()  # Recupera a URL do webhook de pesquisa
         if not webhook_url:
@@ -46,6 +45,8 @@ class WebCompanySearch(http.Controller):
                         'search_request_id': search_request.id,
                     }
                     request.env['web_company_search.company_info'].create(company_data)
+                
+                search_request.write({'status': 'done'})
 
                 return {
                     "status": "success",
