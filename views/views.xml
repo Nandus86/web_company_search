@@ -1,0 +1,94 @@
+<odoo>
+    <data>
+
+       <!-- Action para abrir o formulário de pesquisa -->
+        <record id="action_company_search_form" model="ir.actions.act_window">
+            <field name="name">Pesquisar Empresas</field>
+            <field name="res_model">web_company_search.search_request</field>
+             <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+         <record id="view_company_search_form" model="ir.ui.view">
+            <field name="name">web_company_search.search_request.form</field>
+            <field name="model">web_company_search.search_request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                       <group>
+                            <field name="term" string="Termo da Pesquisa"/>
+                         </group>
+                        <div class="oe_button_box">
+                            <button name="search_companies_action" type="object" string="Pesquisar Empresas" class="oe_highlight"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+       
+          <!-- Action para abrir a lista de empresas -->
+        <record id="action_company_info_list" model="ir.actions.act_window">
+            <field name="name">Empresas Pesquisadas</field>
+            <field name="res_model">web_company_search.company_info</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Nenhuma empresa encontrada. Pesquise para adicionar novas empresas.
+                </p>
+            </field>
+        </record>
+         <!-- View para listagem das empresas -->
+        <record id="view_company_info_tree" model="ir.ui.view">
+            <field name="name">web_company_search.company_info.tree</field>
+            <field name="model">web_company_search.company_info</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="cnpj"/>
+                    <field name="address"/>
+                    <field name="phone"/>
+                    <field name="website"/>
+                </tree>
+            </field>
+        </record>
+
+         <!-- View para formulário de edição das empresas -->
+        <record id="view_company_info_form" model="ir.ui.view">
+            <field name="name">web_company_search.company_info.form</field>
+            <field name="model">web_company_search.company_info</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                         <group>
+                            <field name="name"/>
+                            <field name="cnpj"/>
+                            <field name="address"/>
+                            <field name="phone"/>
+                            <field name="website"/>
+                         </group>
+                       <div class="oe_button_box">
+                            <button name="send_webhook" type="object" string="Enviar para Webhook" class="oe_highlight"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+         <!-- Menu principal -->
+        <menuitem id="menu_web_company_search_root" name="Pesquisar Empresas Web" sequence="10"/>
+
+        <!-- Menu para pesquisa -->
+         <menuitem id="menu_company_search"
+                  name="Pesquisar"
+                  parent="menu_web_company_search_root"
+                   action="action_company_search_form"
+                   sequence="10"/>
+
+         <!-- Menu para listagem de empresas -->
+        <menuitem id="menu_company_info_list"
+                  name="Empresas"
+                  parent="menu_web_company_search_root"
+                  action="action_company_info_list"
+                  sequence="20"/>
+    </data>
+    
+</odoo>
