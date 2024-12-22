@@ -7,7 +7,7 @@ import json
 class WebCompanySearch(http.Controller):
     @http.route('/web/api/search_companies', auth='public', methods=['POST'], csrf=False)
     def search_companies(self, **kw):
-         """
+        """
         Endpoint para receber os termos de pesquisa e iniciar a busca.
         """
         term = kw.get('term')

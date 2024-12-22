@@ -7,7 +7,7 @@
         Este módulo permite pesquisar informações de empresas através de um webhook externo e gerenciar esses dados no Odoo.
         Além disso, permite o envio de informações para um webhook específico.
     """,
-    'author': "Fernando Dias - v.1.0.2",
+    'author': "Fernando Dias - v.1.0.3",
     'category': 'Tools',
     'version': '0.1',
     'depends': ['base'],
