@@ -1,3 +1,3 @@
-# -*- coding: utf-8 -*-
-from . import search_request
-from . import company_info
+from . import contatos_webhook
+from . import res_config_settings
+from . import webscraping_model

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_webscraping_model_tree" model="ir.ui.view">
+        <field name="name">webscraping.model.tree</field>
+        <field name="model">webscraping.model</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <button name="send_webhook" string="Send to Webhook" type="object" class="btn btn-primary"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_webscraping_model_form" model="ir.ui.view">
+        <field name="name">webscraping.model.form</field>
+        <field name="model">webscraping.model</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_webscraping_model" model="ir.actions.act_window">
+        <field name="name">Web Scraping Entries</field>
+        <field name="res_model">webscraping.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_webscraping_root" name="Web Scraping" sequence="10"/>
+    <menuitem id="menu_webscraping_model" name="Scraping Entries" parent="menu_webscraping_root" action="action_webscraping_model" sequence="1"/>
+</odoo>

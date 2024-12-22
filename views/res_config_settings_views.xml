@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_contatos_webhook_config" model="ir.actions.act_window">
+        <field name="name">Configurações</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'contatos_webhook'}</field>
+    </record>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.contatos.webhook</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Contatos Webhook" string="Contatos Webhook" data-key="contatos_webhook">
+                    <h2>Configurações do Webhook</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">URL do Webhook</span>
+                                <div class="text-muted">
+                                    Configure a URL do webhook para envio das mensagens
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="webhook_url" class="o_field_char"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Textos Padrão</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <field name="default_text" placeholder="Digite o texto padrão principal..."/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="use_default_text_2"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <field name="default_text_2" placeholder="Digite o texto padrão 2..."/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="use_default_text_3"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <field name="default_text_3" placeholder="Digite o texto padrão 3..."/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="use_default_text_4"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <field name="default_text_4" placeholder="Digite o texto padrão 4..."/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

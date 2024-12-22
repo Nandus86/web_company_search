@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_contatos_webhook_root"
+              name="Contatos Webhook"
+              sequence="10"/>
+
+    <menuitem id="menu_contatos_webhook"
+              name="Contatos"
+              parent="menu_contatos_webhook_root"
+              action="action_contatos_webhook"
+              sequence="10"/>
+
+    <menuitem id="menu_contatos_webhook_config"
+              name="Configurações"
+              parent="menu_contatos_webhook_root"
+              action="action_contatos_webhook_config"
+              sequence="100"/>
+</odoo>
