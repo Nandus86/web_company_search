@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_contatos_webhook_user,contatos.webhook.user,model_contatos_webhook,base.group_user,1,1,1,1
-access_webscraping_model,access.webscraping.model,model_webscraping_model,base.group_user,1,1,1,1
+access_contatos_webhook_user,contatos.webhook.user,model_contatos_webhook,,1,1,1,1
+access_webscraping_model,access.webscraping.model,model_webscraping_model,,1,1,1,1
